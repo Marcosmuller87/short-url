@@ -1,16 +1,20 @@
+<div *ngIf="showError" class="alert alert-dismissible alert-danger text-center rounded-0">
+  <strong>{{ textError | uppercase}}</strong>
+</div>
 <div class="container">
   <h1 class="display-5 text-center my-4">Enter the URL</h1>
   <div class="row">
     <div class="col-lg-8">
-      <input type="text" class="form-control form-control-lg" placeholder="Ex.: https://www.google.com.br/">
+      <input type="text" [(ngModel)]="urlName" class="form-control form-control-lg" placeholder="Ex.: https://www.google.com.br/">
     </div>
     <div class="col-lg-4">
-      <button class="btn btn-primary btn-block btn-lg">TRANSFORM</button>
+      <button (click)="processUrl()" class="btn btn-primary btn-block btn-lg">PROCESS</button>
     </div>
   </div>
-  <div class="row mt-4">
+  <div class="row mt-4" *ngIf="urlProcessed">
     <div class="col-lg-8">
-      <input type="text" class="form-control form-control-lg" placeholder="URL shortened">
+      <input type="text" [(ngModel)]="urlShort" class="form-control form-control-lg" placeholder="URL shortened">
     </div>
   </div>
+  <app-spinner *ngIf="loading"></app-spinner>
 </div>
